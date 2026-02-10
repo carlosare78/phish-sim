@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulación de Concientización</title>
+  <meta name="description" content="Landing educativa para simulación interna de concientización." />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- (Opcional) Microsoft Clarity: pega aquí tu snippet si lo usas -->
+  <!--
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "TU_ID_DE_CLARITY");
+  </script>
+  -->
+</head>
+
+<body>
+  <main class="container">
+    <header class="card">
+      <div class="badge">Simulación interna</div>
+      <h1>⚠️ Caíste en una simulación</h1>
+      <p class="subtitle">
+        Esto <strong>no</strong> fue un ataque real. El objetivo es reforzar hábitos seguros al abrir enlaces.
+      </p>
+
+      <div class="tips">
+        <h2>Qué revisar la próxima vez</h2>
+        <ul>
+          <li><strong>Dominio:</strong> verifica que el link pertenezca a la empresa o proveedor real.</li>
+          <li><strong>Pasa el mouse:</strong> revisa la URL completa antes de hacer clic.</li>
+          <li><strong>Urgencia:</strong> cuidado con mensajes de “última oportunidad”, “bloqueo inmediato”, etc.</li>
+          <li><strong>Archivos:</strong> desconfía de adjuntos inesperados y solicitudes de credenciales.</li>
+        </ul>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="#" onclick="reportPhish(event)">📩 Reportar intento (simulado)</a>
+        <a class="btn" href="#aprende">✅ Ver checklist rápido</a>
+      </div>
+
+      <p class="small">
+        Si tienes dudas, contacta a <a href="mailto:soportetech1@aspiracioneshc.com">soportetech1@aspiracioneshc.com</a>.
+        <!-- Cambia el correo por el de tu equipo -->
+      </p>
+    </header>
+
+    <section id="aprende" class="grid">
+      <article class="panel">
+        <h3>Checklist (10 segundos)</h3>
+        <ol>
+          <li>¿Reconozco al remitente?</li>
+          <li>¿El dominio coincide con el real?</li>
+          <li>¿Me pide algo urgente o raro?</li>
+          <li>¿Puedo confirmar por otro canal?</li>
+        </ol>
+      </article>
+
+      <article class="panel">
+        <h3>Señales comunes</h3>
+        <ul>
+          <li>Errores de ortografía o tono extraño</li>
+          <li>Enlaces acortados o dominios parecidos</li>
+          <li>Promesas / amenazas (“tu cuenta será cerrada”)</li>
+          <li>Solicitudes de contraseña o códigos</li>
+        </ul>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <p>
+        © <span id="year"></span> Concientización de Seguridad · Uso interno
+      </p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
