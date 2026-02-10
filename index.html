@@ -6,42 +6,67 @@
   <title>Simulación de Concientización</title>
   <meta name="description" content="Landing educativa para simulación interna de concientización." />
   <link rel="stylesheet" href="styles.css" />
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "vfa54s924r");
-    </script>
+
+  <!-- (Opcional) Microsoft Clarity: pega aquí tu snippet si lo usas -->
+  <!--
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "TU_ID_DE_CLARITY");
+  </script>
+  -->
 </head>
 
 <body>
   <main class="container">
     <header class="card">
       <div class="badge">Simulación interna</div>
-      <h1>⚠️ Caíste en una simulación</h1>
+      <h1>⚠️ Simulación: abriste un enlace de prueba</h1>
+
       <p class="subtitle">
         Esto <strong>no</strong> fue un ataque real. El objetivo es reforzar hábitos seguros al abrir enlaces.
       </p>
 
       <div class="tips">
-        <h2>Qué revisar la próxima vez</h2>
-        <ul>
-          <li><strong>Dominio:</strong> verifica que el link pertenezca a la empresa o proveedor real.</li>
-          <li><strong>Pasa el mouse:</strong> revisa la URL completa antes de hacer clic.</li>
-          <li><strong>Urgencia:</strong> cuidado con mensajes de “última oportunidad”, “bloqueo inmediato”, etc.</li>
-          <li><strong>Archivos:</strong> desconfía de adjuntos inesperados y solicitudes de credenciales.</li>
-        </ul>
+        <h2>Siguiente paso (obligatorio)</h2>
+
+        <div class="countdown">
+          <div class="countdown-label">Tiempo restante para completar el contacto:</div>
+          <div class="countdown-time" id="countdown">10:00</div>
+          <div class="countdown-note" id="countdownNote">
+            (Contacta a soporte antes de que el tiempo finalice)
+          </div>
+        </div>
+
+        <p style="color: rgba(255,255,255,0.80); line-height:1.7; margin: 14px 0 0;">
+          Ahora que abriste este enlace, debes <strong>contactar a Soporte</strong> para continuar con el proceso de verificación.
+          Escribe a:
+          <strong>
+            <a
+              href="mailto:soportetech1@aspiracioneshc.com?subject=Seguimiento%20-%20Simulaci%C3%B3n%20de%20Phishing&body=Hola%20Soporte%2C%0A%0AAbr%C3%AD%20un%20enlace%20de%20la%20simulaci%C3%B3n%20de%20phishing%20y%20necesito%20el%20siguiente%20paso.%0A%0AMi%20nombre%3A%20%0AMi%20correo%3A%20%0A%C3%81rea%2Fpuesto%3A%20%0A%0AGracias."
+              style="color:#4ea1ff;"
+            >
+              soportetech1@aspiracioneshc.com
+            </a>
+          </strong>
+        </p>
       </div>
 
       <div class="actions">
-        <a class="btn primary" href="#" onclick="reportPhish(event)">📩 Reportar intento (simulado)</a>
+        <a
+          class="btn primary"
+          href="mailto:soportetech1@aspiracioneshc.com?subject=Seguimiento%20-%20Simulaci%C3%B3n%20de%20Phishing&body=Hola%20Soporte%2C%0A%0AAbr%C3%AD%20un%20enlace%20de%20la%20simulaci%C3%B3n%20de%20phishing%20y%20necesito%20el%20siguiente%20paso.%0A%0AMi%20nombre%3A%20%0AMi%20correo%3A%20%0A%C3%81rea%2Fpuesto%3A%20%0A%0AGracias."
+        >
+          📩 Contactar a Soporte para el siguiente paso
+        </a>
         <a class="btn" href="#aprende">✅ Ver checklist rápido</a>
       </div>
 
       <p class="small">
-        Si tienes dudas, contacta a <a href="mailto:soportetech1@aspiracioneshc.com">soportetech1@aspiracioneshc.com</a>.
-        <!-- Cambia el correo por el de tu equipo -->
+        Si recibiste un correo similar fuera de una campaña interna, repórtalo inmediatamente a
+        <a href="mailto:soportetech1@aspiracioneshc.com">soportetech1@aspiracioneshc.com</a>.
       </p>
     </header>
 
@@ -68,12 +93,56 @@
     </section>
 
     <footer class="footer">
-      <p>
-        © <span id="year"></span> Concientización de Seguridad · Uso interno
-      </p>
+      <p>© <span id="year"></span> Concientización de Seguridad · Uso interno</p>
     </footer>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    (function () {
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // === CONTADOR ===
+      // Duración en segundos (10 minutos = 600). Cambia aquí si quieres 5 min (300), 15 min (900), etc.
+      const DURATION_SECONDS = 10 * 60;
+
+      const countdownEl = document.getElementById("countdown");
+      const noteEl = document.getElementById("countdownNote");
+
+      // Persistencia para que no se reinicie con recarga
+      const KEY = "phish_sim_deadline_ts";
+      const now = Date.now();
+
+      let deadline = Number(localStorage.getItem(KEY));
+      if (!deadline || deadline < now) {
+        deadline = now + DURATION_SECONDS * 1000;
+        localStorage.setItem(KEY, String(deadline));
+      }
+
+      function formatMMSS(totalSeconds) {
+        const m = Math.floor(totalSeconds / 60);
+        const s = totalSeconds % 60;
+        return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+      }
+
+      function tick() {
+        const remainingMs = deadline - Date.now();
+        const remainingSec = Math.max(0, Math.ceil(remainingMs / 1000));
+
+        countdownEl.textContent = formatMMSS(remainingSec);
+
+        if (remainingSec <= 60 && remainingSec > 0) {
+          noteEl.textContent = "⚠️ Te queda 1 minuto o menos. Contacta a soporte ahora.";
+        }
+
+        if (remainingSec === 0) {
+          noteEl.textContent = "⏱️ Tiempo finalizado. Aun así, contacta a soporte para el siguiente paso.";
+          clearInterval(timer);
+        }
+      }
+
+      tick();
+      const timer = setInterval(tick, 1000);
+    })();
+  </script>
 </body>
 </html>
